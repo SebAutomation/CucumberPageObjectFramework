@@ -1,10 +1,10 @@
 @Search-Cars
-Feature: Acceptance testing to validate Search cars page is working
+Feature: Search cars page for new cars is working as expected
   In order to validate that
   the search cars page is working fine
   we will do the acceptance testing
 
-  @Search-Cars-Positive
+  @New-Search-Cars
   Scenario: Validate new search cars page
     Given I am on a Home Page "https://www.carsguide.com.au/" of Car for Sale
     When I move to the menu

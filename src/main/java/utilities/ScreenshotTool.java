@@ -18,16 +18,14 @@ import java.io.IOException;
 public class ScreenshotTool {
 
     private static Logger logger = LoggerFactory.getLogger(ScreenshotTool.class);
+    private static final String CUCUMBER_REPORTS_SCREENSHOT_PATH = "/target/cucumber-reports/screenshots/";
 
     public static String takeScreenshot(String screenshotFileName) {
 
         //Building up the destination path for the screenshot to save
         //screenshot will be located under target/cucumber-reports/screenshots/ folder
-
-        String directoryPath = System.getProperty("user.dir") + "/target/cucumber-reports/screenshots/";
-
+        String directoryPath = System.getProperty("user.dir") + CUCUMBER_REPORTS_SCREENSHOT_PATH;
         makeDirectoryFolder(directoryPath);
-
         String destinationPath = directoryPath + screenshotFileName;
 
         //This takes a screenshot from the driver and save it to the specified location
@@ -39,16 +37,14 @@ public class ScreenshotTool {
         } catch (IOException e) {
             logger.error("Failed to copy a screenshot from source location to destination: {}", e);
         }
-//        return destinationPath;
+
         return "./screenshots/" + screenshotFileName;
     }
 
     public static String takeScreenshotEntirePage(String screenshotFileName) {
 
-        String directoryPath = System.getProperty("user.dir") + "/target/cucumber-reports/screenshots/";
-
+        String directoryPath = System.getProperty("user.dir") + CUCUMBER_REPORTS_SCREENSHOT_PATH;
         makeDirectoryFolder(directoryPath);
-
         String destination = directoryPath + screenshotFileName;
 
         Screenshot screenshot = new AShot().shootingStrategy(ShootingStrategies.viewportPasting(100)).takeScreenshot(DriverContext.driver);

@@ -6,8 +6,4 @@ public class DriverContext {
 
     public static WebDriver driver;
 
-    public static void setDriver(WebDriver driver) {
-        DriverContext.driver = driver;
-    }
-
 }

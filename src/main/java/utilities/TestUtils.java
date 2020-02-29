@@ -19,8 +19,6 @@ public class TestUtils {
 
     private ConfigurationService configurationService;
     private static WebDriverWait waitDriver;
-    public static final int TIMEOUT = 10;
-    public static final int PAGE_LOAD_TIMEOUT = 50;
     private BrowserType browserType;
     private Logger logger = LoggerFactory.getLogger(TestUtils.class);
 
@@ -28,7 +26,7 @@ public class TestUtils {
         this.configurationService = configurationService;
     }
 
-    public void initializeDriver() {
+    public void initializeBrowser() {
         if (System.getProperty("browserType") != null) {
             browserType = BrowserType.valueOf(System.getProperty("browserType").toLowerCase());
         } else {
@@ -58,12 +56,25 @@ public class TestUtils {
             }
         }
 
-        DriverContext.driver.manage().window().maximize();
-        waitDriver = new WebDriverWait(DriverContext.driver, TIMEOUT);
-        DriverContext.driver.manage().timeouts().implicitlyWait(TIMEOUT, TimeUnit.SECONDS);
-        DriverContext.driver.manage().timeouts().pageLoadTimeout(PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
-
         logger.info("Framework starts driver: {}", DriverContext.driver.toString());
+    }
+
+    public int getBrowserImplicitTime(){
+        return Integer.valueOf(configurationService.getProperty("browserImplicitTime"));
+    }
+
+    public int getPageLoadTimeout(){
+        return Integer.valueOf(configurationService.getProperty("pageLoadTimeout"));
+    }
+
+    public void maximizeBrowser(){
+        DriverContext.driver.manage().window().maximize();
+    }
+
+    public void setImplicitTime(){
+        waitDriver = new WebDriverWait(DriverContext.driver, getBrowserImplicitTime());
+        DriverContext.driver.manage().timeouts().implicitlyWait(getBrowserImplicitTime(), TimeUnit.SECONDS);
+        DriverContext.driver.manage().timeouts().pageLoadTimeout(getPageLoadTimeout(), TimeUnit.SECONDS);
     }
 
     public void openBrowser(String url) {

@@ -13,14 +13,15 @@ import java.io.File;
 public class LogsTool {
 
     private static Logger logger = LoggerFactory.getLogger(LogsTool.class);
+    private static final String EXTENT_CONFIG_PATH = "src/test/resources/extent-config.xml";
+
     public static void setExtentReportsInfo() {
 
         Capabilities caps = ((RemoteWebDriver) DriverContext.driver).getCapabilities();
-        final String extentConfigPath = "src/test/resources/extent-config.xml";
 
         try {
-            Reporter.loadXMLConfig(new File(extentConfigPath));
-            logger.info("The ExtentReports configuration file has been read from: {}", extentConfigPath);
+            Reporter.loadXMLConfig(new File(EXTENT_CONFIG_PATH));
+            logger.info("The ExtentReports configuration file has been read from: {}", EXTENT_CONFIG_PATH);
         } catch (Exception e) {
             logger.error("Failure to read extent-config.xml: {}", e);
         }

@@ -15,7 +15,10 @@ public class Hooks {
 
     @Before
     public void setUp() {
-        testUtils.initializeDriver();
+        testUtils.initializeBrowser();
+        testUtils.maximizeBrowser();
+        testUtils.setImplicitTime();
+        testUtils.deleteCookies();
     }
 
     @After
