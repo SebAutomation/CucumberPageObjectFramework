@@ -12,7 +12,7 @@
         <java.version>1.8</java.version>
         <cucumber.version>1.2.5</cucumber.version>
         <selenium.version>3.8.1</selenium.version>
-        <junit.version>4.11</junit.version>
+        <junit.version>4.13.1</junit.version>
         <extentreports.version>2.41.0</extentreports.version>
         <extentreports.aventstack.version>3.1.2</extentreports.aventstack.version>
         <log4j.version>1.2.17</log4j.version>
